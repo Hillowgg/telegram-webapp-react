@@ -1,24 +1,20 @@
+import React, {useState} from 'react';
+import { useThemeParams } from '@vkruglikov/react-telegram-web-app';
+
 import './App.css';
+import Calendar from "./modules/Calendar";
+
+import DayChooser from "./modules/DayChooser";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    let [day, setDay] = useState(0);
+
+    return (
+        <div className="App">
+            <Calendar day={day}/>
+            <DayChooser setDay={setDay}/>
+        </div>
+    );
 }
 
 export default App;

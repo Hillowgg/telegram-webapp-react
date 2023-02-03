@@ -1,20 +1,39 @@
 import React from 'react';
 
 // import { MainButton, useShowPopup } from '@vkruglikov/react-telegram-web-app';
-import { Form, Select } from 'antd';
+import {Radio, Select} from 'antd';
 
-export default function DayChooser() {
+const divStyles = {
+    position: 'fixed',
+    bottom: 0,
+    display: 'grid',
+    align: 'center',
+    width: '100%',
+    height: '5vh'
+}
+
+const selectStyles = {
+    width: '100%',
+    height: '100%'
+}
+
+export default function DayChooser(data) {
+
+    const onChange = (e) => {
+        data.setDay(e.target.value)
+    }
+
     return (
-        <div className="DayChooser">
-            <Select defaultValue={'Monday'}>
-                <Select.Option value={'Monday'}>Monday</Select.Option>
-                <Select.Option value={'Tuesday'}>Tuesday</Select.Option>
-                <Select.Option value={'Wednesday'}>Wednesday</Select.Option>
-                <Select.Option value={'Thursday'}>Thursday</Select.Option>
-                <Select.Option value={'Friday'}>Friday</Select.Option>
-                <Select.Option value={'Saturday'}>Saturday</Select.Option>
-                <Select.Option value={'Sunday'}>Sunday</Select.Option>
-            </Select>
+        <div style={divStyles}>
+            <Radio.Group onChange={onChange} defaultValue={0}>
+                <Radio.Button value={0}>Пн</Radio.Button>
+                <Radio.Button value={1}>Вт</Radio.Button>
+                <Radio.Button value={2}>Ср</Radio.Button>
+                <Radio.Button value={3}>Чт</Radio.Button>
+                <Radio.Button value={4}>Пт</Radio.Button>
+                <Radio.Button value={5}>Сб</Radio.Button>
+                <Radio.Button value={6}>Вс</Radio.Button>
+            </Radio.Group>
         </div>
     )
 }

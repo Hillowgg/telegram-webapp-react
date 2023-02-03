@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "John",
+    "tasks": {
+      "Monday": [
+        {"task": "do dished",
+          "start": "10:00",
+            "end": "11:00"
+        },
+        {"task": "do laundry",
+          "start": "11:00",
+            "end": "12:00"
+        },
+        {"task": "do homework",
+          "start": "13:10",
+            "end": "14:25"
+        }
+
+      ]
+    }
+  }
+]
