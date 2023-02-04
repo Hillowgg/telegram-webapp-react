@@ -1,5 +1,4 @@
 import React from 'react';
-import {Timeline} from "antd";
 // import {useState} from "react";
 
 const gridStyles = {
@@ -15,9 +14,11 @@ function countPos(prevEnd, start, end) {
 
     start.split(':').map((time, index) => {
         startTime += time * (index === 0 ? 60 : 1);
+        return time;
     })
     end.split(':').map((time, index) => {
         endTime += time * (index === 0 ? 60 : 1);
+        return time;
     })
 
     return [startTime - prevEnd, endTime - startTime];
@@ -65,13 +66,14 @@ function parseDay(day, color) {
 
         divs.push(
             <div style={styles}>
-                <a style={stylesStart}> {task.start}</a>
+                <h6 style={stylesStart}> {task.start}</h6>
                 <div>
                     {task.task}
                 </div>
-                <a style={stylesEnd}>{task.end}</a>
+                <h6 style={stylesEnd}>{task.end}</h6>
             </div>
         )
+        return task;
     })
     return divs;
 }

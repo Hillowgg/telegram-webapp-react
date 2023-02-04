@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import { useThemeParams } from '@vkruglikov/react-telegram-web-app';
 
 import './App.css';
 import Calendar from "./modules/Calendar";

@@ -1,7 +1,7 @@
 import React from 'react';
 
 // import { MainButton, useShowPopup } from '@vkruglikov/react-telegram-web-app';
-import {Radio, Select} from 'antd';
+import {Radio} from 'antd';
 
 const divStyles = {
     position: 'fixed',
@@ -10,11 +10,6 @@ const divStyles = {
     align: 'center',
     width: '100%',
     height: '5vh'
-}
-
-const selectStyles = {
-    width: '100%',
-    height: '100%'
 }
 
 export default function DayChooser(data) {
