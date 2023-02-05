@@ -1,6 +1,6 @@
 FROM node:16-alpine
-WORKDIR .
-COPY . .
+WORKDIR /telegram-webapp-react
+COPY /telegram-webapp-react .
 
 #COPY package.json .
 
