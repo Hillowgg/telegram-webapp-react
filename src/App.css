@@ -10,6 +10,8 @@ html {
   text-align: center;
   overflow-x: hidden;
   min-width: 100%;
+  --topbar-height: 5vh;
+  --daychoosing-height: 5vh;
 }
 
 .App-header {
