@@ -1,12 +1,6 @@
 import React from 'react';
-// import {useState} from "react";
+import Color from 'color';
 
-const gridStyles = {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gridGap: '1vh',
-    height: '3600px',
-}
 
 function countPos(prevEnd, start, end) {
     let startTime = 0;
@@ -35,16 +29,19 @@ function parseDay(day, color) {
         prevEnd = margin + prevEnd + height + 4;
 
         const styles = {
-            marginTop: margin + 'px',
+            marginTop: margin + 5 + 'px',
             height: height + 'px',
             width: '100%',
             borderRadius: '5px',
-            backgroundColor: 'rgba(' + color + ', 0.5)',
+            backgroundColor: color.alpha(0.5).toString(),
             justifyContent: 'center',
             alignItems: 'center',
             display: 'flex',
-            borderLeft: '5px solid rgb(' + color + ')',
+            borderLeft: '5px solid ' + color.toString(),
             position: 'relative',
+            fontSize: '3vmin',
+            wordWrap: 'break-word',
+            wordBreak: 'break-all'
         }
 
         const stylesStart = {
@@ -52,7 +49,8 @@ function parseDay(day, color) {
             top: 0,
             left: 0,
             margin: '1px',
-            fontSize: '10px'
+            fontSize: '1.5vmin'
+
         }
 
         const stylesEnd = {
@@ -60,7 +58,7 @@ function parseDay(day, color) {
             bottom: 0,
             right: 0,
             margin: '1px',
-            fontSize: '10px'
+            fontSize: '1.5vmin'
         }
 
 
@@ -78,49 +76,33 @@ function parseDay(day, color) {
     return divs;
 }
 
-export default function Calendar(data) {
 
-    const example = [
-        {
-            id: 1, name: 'Вася',
-            days: [
-                [
-                    {task: "Умыться", start: "0:00", end: "1:00"},
-                    {task: "Проснуться", start: "5:00", end: "6:00"},
-                    {task: "Проснуться", start: "8:00", end: "8:30"},
-                    {task: "Поесть", start: "8:40", end: "9:10"},
-                    {task: 'лень', start: '9:10', end: '10:30'},
-                ],
-                [
-                    {task: "Поучиться", start: "10:30", end: "14:15"},
-                ]
-            ]
-        },
-        {
-            id: 2, name: 'Петя', days: [
-                [
-                    {task: "Умыться", start: "2:00", end: "2:20"},
-                    {task: "Проснуться", start: "5:00", end: "6:00"},
-                    {task: "Умыться", start: "8:00", end: "8:30"},
-                    {task: "Поесть", start: "8:40", end: "9:10"},
-                    {task: 'лень', start: '9:10', end: '10:30'},
-                    {task: "Поучиться", start: "10:30", end: "14:15"},
-                ], [
-                    {task: "Поучиться", start: "11:30", end: "14:15"},
-                ]
+const parseData = (data, day, weekParity) => {
+    const result = data.map((user, i) => {
+        return (
+            <div style={{gridColumn: i + 1}}>
+                {parseDay(user.weeks[weekParity][day], Color(user.color))}
+            </div>
+        )
+    })
+    return result;
+}
 
-            ]
-        }
-    ]
+export default function Calendar({data, day, weekParity}) {
+    console.log(parseData(data, day, weekParity));
+    const calendarStyles = {
+        display: 'grid',
+        // gridTemplateColumns: '1fr 1fr',
+        gridAutoColumns: '1fr',
+        gridGap: '0.5vh',
+        height: '3600px',
+        marginTop: 'var(--topbar-height)',
+        marginBottom: 'var(--daychoosing-height)'
+    }
 
     return (
-        <div style={gridStyles} className="Calendar">
-            <div style={{gridColumn: '1'}}>
-                {parseDay(example[0].days[data.day], '185, 61, 113')}
-            </div>
-            <div style={{gridColumn: '2'}}>
-                {parseDay(example[1].days[data.day], '88, 186, 158')}
-            </div>
+        <div style={calendarStyles} className="Calendar">
+            {parseData(data, day, weekParity)}
         </div>
     )
 }
